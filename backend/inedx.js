@@ -1,35 +1,23 @@
-{
-    "users": [
-      { "id": 1, "name": "Alice", "email": "alice@example.com" },
-      { "id": 2, "name": "Bob", "email": "bob@example.com" }
-    ]
-}
-fetch(url, options)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json(); // Converts response data to JSON
-  })
+
+const formData = new URLSearchParams();
+formData.append("key1", "value1");
+formData.append("key2", "value2");
+headers: {
+    'X-Custom-Header': 'CustomValue',
+  }
+
+body: formData.toString();fetch("http://localhost:3000/posts")
+  .then((response) => response.json())
   .then((data) => console.log(data))
   .catch((error) => console.error("Error:", error));
-  const options = {
-    method: "POST", // HTTP method (GET, POST, etc.)
-    headers: {
-      "Content-Type": "application/json", // Data type
-    },
-    body: JSON.stringify({ title: "json-server", author: "typicode" }), // Request payload
-  };  
-  const options = {
-    method: "POST", // HTTP request method
-    headers: {
-      // Metadata about the request
-      "Content-Type": "application/json", // Data format being sent
-      Authorization: "Bearer <token>", // Example of an authorization token
-    },
-    body: JSON.stringify({ title: "JSON Server", author: "Typicode" }), // Payload
-  };
-  headers: {
-    'Content-Type': 'application/json',
-  }
-     
+
+
+  fetch("http://localhost:3000/posts/1")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
+  
+  fetch("http://localhost:3000/posts?author=typicode")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
